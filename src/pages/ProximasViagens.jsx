@@ -287,6 +287,28 @@ export default function ProximasViagens() {
                           </div>
                         )}
 
+                        {trip.videoUrl && (
+                          <div className="trip-video-section" style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px dashed rgba(197, 168, 128, 0.2)' }}>
+                            <h4 className="video-section-title" style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', fontWeight: '700', color: 'var(--color-dark-green)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px' }}>
+                              🎬 {t(trip.videoTitle || "Experiência Exclusiva", "Exclusive Experience")}
+                            </h4>
+                            <div className="video-wrapper" style={{ borderRadius: '8px', overflow: 'hidden', boxShadow: 'var(--shadow-subtle)', backgroundColor: '#1A261D', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                              <iframe 
+                                src={trip.videoUrl.replace("youtube.com/shorts/", "youtube.com/embed/").replace("?is=", "?si=")} 
+                                style={{ 
+                                  width: '100%', 
+                                  height: trip.videoUrl.includes('shorts') ? '450px' : '315px', 
+                                  maxWidth: trip.videoUrl.includes('shorts') ? '255px' : '100%', 
+                                  border: 'none' 
+                                }}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowFullScreen
+                                title={trip.videoTitle || "Video Destino"}
+                              ></iframe>
+                            </div>
+                          </div>
+                        )}
+
                         <button 
                           onClick={() => toggleTripExpand(trip.id)} 
                           className="btn-toggle-details"
