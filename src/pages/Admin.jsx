@@ -568,6 +568,8 @@ export default function Admin() {
       routeString: '',
       mapImage: '',
       mapDistances: '',
+      videoUrl: '',
+      videoTitle: '',
     });
     setIsModalOpen(true);
   };
@@ -602,6 +604,8 @@ export default function Admin() {
       routeString: (trip.route || []).join(', '),
       mapImage: trip.mapImage || '',
       mapDistances: trip.mapDistances || '',
+      videoUrl: trip.videoUrl || '',
+      videoTitle: trip.videoTitle || '',
     });
     // Detecta automaticamente se a imagem é base64 (upload) ou URL
     const imageIsBase64 = trip.image && trip.image.startsWith('data:');
@@ -687,6 +691,8 @@ export default function Admin() {
       route,
       mapImage: tripForm.mapImage || '',
       mapDistances: tripForm.mapDistances || '',
+      videoUrl: tripForm.videoUrl || '',
+      videoTitle: tripForm.videoTitle || '',
       itinerary: [
         { day: 1, title: `Chegada em ${tripForm.title}`, desc: `Recepção no aeroporto e traslado privativo para o nosso hotel boutique.` },
         { day: 2, title: "Exploração Guiada", desc: "Passeio exclusivo acompanhado de guia local especializado nos segredos da região." }
@@ -2042,6 +2048,27 @@ export default function Admin() {
                     rows="4" 
                     placeholder="Ex: Hospedagem com café da manhã&#10;Traslados privativos&#10;Passeios guiados com ingressos..."
                   ></textarea>
+                </div>
+
+                <div className="form-row-two-col">
+                  <div className="form-group-custom">
+                    <label>URL do Vídeo (YouTube Shorts/Embed)</label>
+                    <input 
+                      type="url" 
+                      value={tripForm.videoUrl || ''} 
+                      onChange={e => setTripForm({...tripForm, videoUrl: e.target.value})} 
+                      placeholder="Ex: https://youtube.com/shorts/..." 
+                    />
+                  </div>
+                  <div className="form-group-custom">
+                    <label>Título do Vídeo (Opcional)</label>
+                    <input 
+                      type="text" 
+                      value={tripForm.videoTitle || ''} 
+                      onChange={e => setTripForm({...tripForm, videoTitle: e.target.value})} 
+                      placeholder="Ex: Grotta Palazzese, Puglia" 
+                    />
+                  </div>
                 </div>
 
                 <div className="form-group-custom" style={{ flexDirection: 'row', alignItems: 'center', gap: '10px', marginTop: '15px' }}>
